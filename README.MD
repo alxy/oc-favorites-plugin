@@ -39,16 +39,16 @@ class Post extends Model
 }
 ```
 
-That's it ... your model is now **"favoriteable"**!
+That's it ... your model is now **"Favoriteable"**!
 
 ## Usage
 
-The models can be favorited with and without an authenticated user
+The models can be favored with and without an authenticated user
 (see examples below):
 
 ### Add to favorites and remove from favorites:
 
-If no param is passed in the favorite method, then the model will assume the authenticated user.
+If no param is passed to the favorite method, then the model will assume the authenticated user.
 
 ``` php
 $post = Post::find(1);
@@ -67,7 +67,7 @@ $post->removeFavorite($user); // user with that id removed from favorites this p
 $post->toggleFavorite($user); // user with that id toggles the favorite status from this post
 ```
 
-The user model can also add to favorites and remove from favrites:
+The user model can also add to favorites and remove from favorites:
 
 ``` php
 $user = User::first();
@@ -80,7 +80,7 @@ $user->toggleFavorite($post); // The user toggles the favorite status from this 
 ### Return the favorite objects for the user:
 
 A user can return the objects he marked as favorite. 
-You just need to pass the **class** in the `favorite()` method in the `User` model.
+You just need to pass the **class** to the `favoritesOf()` method of the `User` model.
 
 ``` php
 $user = Auth::getUser();
@@ -89,7 +89,7 @@ $user->favoritesOf(Post::class); // returns a collection of Posts the User has m
 
 ### Return the favorites count from an object:
 
-You can return the favorites count from an object, you just need to return the `favoritesCount` attribute from the model
+You can return the favorites count from an object, you just need to access the `favorites_count` attribute from the model
 
 ``` php
 $post = Post::find(1);
