@@ -32,6 +32,7 @@ In all the examples I will use the Post model as the model that is 'Favoriteable
 (see an example below):
 
 ```php
+use Model;
 
 class Post extends Model
 {
@@ -113,4 +114,3 @@ Pull requests are welcome.
 ## Credits
 
 - [Christian Kuri](https://github.com/ChristianKuri)
-- [All Contributors][link-contributors]
