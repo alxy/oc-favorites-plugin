@@ -53,9 +53,9 @@ If no param is passed to the favorite method, then the model will assume the aut
 
 ``` php
 $post = Post::find(1);
-$post->addFavorite(); // auth user added to favorites this post
-$post->removeFavorite(); // auth user removed from favorites this post
-$post->toggleFavorite(); // auth user toggles the favorite status from this post
+$post->addFavorite(); // auth user is added to favorites of this post
+$post->removeFavorite(); // auth user is removed from favorites of this post
+$post->toggleFavorite(); // toggles the favorite status of this post
 ```
 
 You can also pass a user model directly to these methods. In this case, the given user will be used.
@@ -63,9 +63,9 @@ You can also pass a user model directly to these methods. In this case, the give
 ``` php
 $post = Post::find(1);
 $user = RainLab\Models\User::first();
-$post->addFavorite($user); // user with that id added to favorites this post
-$post->removeFavorite($user); // user with that id removed from favorites this post
-$post->toggleFavorite($user); // user with that id toggles the favorite status from this post
+$post->addFavorite($user);
+$post->removeFavorite($user);
+$post->toggleFavorite($user);
 ```
 
 The user model can also add to favorites and remove from favorites:
@@ -73,9 +73,9 @@ The user model can also add to favorites and remove from favorites:
 ``` php
 $user = User::first();
 $post = Post::first();
-$user->addFavorite($post); // The user added to favorites this post
-$user->removeFavorite($post); // The user removed from favorites this post
-$user->toggleFavorite($post); // The user toggles the favorite status from this post
+$user->addFavorite($post);
+$user->removeFavorite($post);
+$user->toggleFavorite($post);
 ```
 
 ### Return the favorite objects for the user:
@@ -90,7 +90,7 @@ $user->favoritesOf(Post::class); // returns a collection of Posts the User has m
 
 ### Return the favorites count from an object:
 
-You can return the favorites count from an object, you just need to access the `favorites_count` attribute from the model
+To return the favorites count from an object, you just need to access the `favorites_count` attribute from the model.
 
 ``` php
 $post = Post::find(1);
@@ -99,7 +99,7 @@ $post->favorites_count; // returns the number of users that have marked as favor
 
 ### Return the users who marked this object as favorite
 
-You can return the users who marked this object, you just need to call the `favoritedBy()` method in the object
+To return the users who favored this object, you just need to call the `favoritedBy()` method in the object.
 
 ``` php
 $post = Post::find(1);
