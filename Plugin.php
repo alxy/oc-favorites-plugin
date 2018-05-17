@@ -40,6 +40,19 @@ class Plugin extends PluginBase
     }
 
     /**
+     * Registers any front-end components implemented in this plugin.
+     *
+     * @return array
+     */
+    public function registerComponents()
+    {
+
+        return [
+            'Alxy\Favorites\Components\FavoMatic' => 'favoMatic',
+        ];
+    }
+
+    /**
      * Boot method, called right before the request route.
      *
      * @return array

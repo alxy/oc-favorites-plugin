@@ -29,12 +29,13 @@ $ php artisan plugin:install Alxy.Favorites
 
 Your models should import the `Alxy.Favorites.Behaviors.Favoriteable` behavior. That will have the methods that you'll use to allow the model be favoriteable.
 In all the examples I will use the Post model as the model that is 'Favoriteable', thats for example propuses only.
+Note: The Post model is extended to implement the behavior in Plugin.php
 (see an example below):
 
 ```php
 use Model;
 
-class Post extends Model
+class MyModel extends Model
 {
     public $implement = ['Alxy.Favorites.Behaviors.Favoriteable'];
 }
@@ -43,6 +44,35 @@ class Post extends Model
 That's it ... your model is now **"Favoriteable"**!
 
 ## Usage
+
+Add the FavoMatic plugin to your page/layout file to add features to your frontend.
+
+The Favoriteable methods below are now available in your page and can be called via AJAX using the appropriate calls:
+
+```html
+data-request="onAddFavorite" data-request-data="id: {{post.id}}"
+```
+
+```html
+data-request="onRemoveFavorite" data-request-data="id: {{post.id}}"
+```
+
+```html
+data-request="onToggleFavorite" data-request-data="id: {{post.id}}"
+```
+
+### Using the FavoMatic Component with HTML
+
+If you wish to use the default markup, you can include the component twig element in your Blog's Post loop. For example:
+
+```
+{% for post in posts %}
+    <h1>{{ post.title }}</h1>
+    {% component 'favoMatic' %}
+{% endfor %}
+```
+
+This will render the 'onAddFavorite' and 'onAddFavorite' methods for each post automatically. If you wish to override this default markup, create a 'favomatic' folder in your theme/partials directory and include the AJAX methods described in the previous section.
 
 The models can be favored with and without an authenticated user
 (see examples below):
