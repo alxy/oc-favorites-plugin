@@ -1,6 +1,7 @@
 <?php namespace Alxy\Favorites;
 
 use RainLab\User\Models\User;
+use RainLab\Blog\Models\Post;
 use System\Classes\PluginBase;
 
 /**
@@ -45,8 +46,16 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
-        User::extend(function($model) {
-            $model->implement[] = 'Alxy.Favorites.Behaviors.Favoriteability';
+        // Check if favorites plugin is installed
+        if (!class_exists('Alxy\Favorites\Behaviors\Favoriteable'))
+            return;
+
+        // Extend Post model with behavior
+        Post::extend(function($model) {
+            // Implement behavior if not already implemented
+            if (!$model->isClassExtendedWith('Alxy.Favorites.Behaviors.Favoriteable')) {
+                $model->implement[] = 'Alxy.Favorites.Behaviors.Favoriteable';
+            }
         });
     }
 
