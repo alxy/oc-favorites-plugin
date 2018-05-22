@@ -61,7 +61,7 @@ data-request="onRemoveFavorite" data-request-data="id: {{post.id}}"
 data-request="onToggleFavorite" data-request-data="id: {{post.id}}"
 ```
 
-### Using the FavoMatic Component with HTML
+### Using the FavoritePost Component with HTML
 
 If you wish to use the default markup, you can include the component twig element in your Blog's Post loop. For example:
 

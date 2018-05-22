@@ -3,6 +3,7 @@
 use RainLab\User\Models\User;
 use RainLab\Blog\Models\Post;
 use System\Classes\PluginBase;
+use System\Classes\PluginManager;
 
 /**
  * Favorites Plugin Information File
@@ -48,7 +49,7 @@ class Plugin extends PluginBase
     {
 
         return [
-            'Alxy\Favorites\Components\MakeFavorite' => 'makeFavorite',
+            'Alxy\Favorites\Components\FavoritePost' => 'favoritePost',
         ];
     }
 
@@ -59,6 +60,9 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
+        if(!PluginManager::instance()->exists('RainLab.Blog'))
+            return;
+
         // Extend Post model with behavior
         Post::extend(function($model) {
             // Implement behavior if not already implemented

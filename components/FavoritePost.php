@@ -5,12 +5,12 @@ use Auth;
 use RainLab\User\Models\User;
 use RainLab\Blog\Models\Post;
 
-class MakeFavorite extends ComponentBase
+class FavoritePost extends ComponentBase
 {
     public function componentDetails()
     {
         return [
-            'name'        => 'Favorites Component',
+            'name'        => 'Favorite Posts Component',
             'description' => 'Inject Blog Post Favoriteability into pages.'
         ];
     }

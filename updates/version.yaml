@@ -2,4 +2,4 @@
     - First version of Favorites
     - create_favorites_table.php
 1.0.2:
-    - Added FavoMatic component to inject funtionality into pages
+    - Added FavoritePost component to inject funtionality into pages
