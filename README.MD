@@ -72,7 +72,7 @@ If you wish to use the default markup, you can include the component twig elemen
 {% endfor %}
 ```
 
-This will render the 'onAddFavorite' and 'onAddFavorite' methods for each post automatically. If you wish to override this default markup, create a 'favomatic' folder in your theme/partials directory and include the AJAX methods described in the previous section.
+This will render the 'onAddFavorite' and 'onToggleFavorite' methods for each post automatically. If you wish to override this default markup, create a 'favomatic' folder in your theme/partials directory and include the AJAX methods described in the previous section.
 
 The models can be favored with and without an authenticated user
 (see examples below):

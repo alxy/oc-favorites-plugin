@@ -5,7 +5,7 @@ use Auth;
 use RainLab\User\Models\User;
 use RainLab\Blog\Models\Post;
 
-class FavoMatic extends ComponentBase
+class MakeFavorite extends ComponentBase
 {
     public function componentDetails()
     {

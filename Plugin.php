@@ -48,7 +48,7 @@ class Plugin extends PluginBase
     {
 
         return [
-            'Alxy\Favorites\Components\FavoMatic' => 'favoMatic',
+            'Alxy\Favorites\Components\MakeFavorite' => 'makeFavorite',
         ];
     }
 
@@ -59,10 +59,6 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
-        // Check if favorites plugin is installed
-        if (!class_exists('Alxy\Favorites\Behaviors\Favoriteable'))
-            return;
-
         // Extend Post model with behavior
         Post::extend(function($model) {
             // Implement behavior if not already implemented
