@@ -60,10 +60,6 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
-        // Check for RainLab Blog plugin
-        if(!PluginManager::instance()->exists('RainLab.Blog'))
-            return;
-
         // Extend User model with behavior
         User::extend(function($model) {
             // Implement behavior if not already implemented
@@ -71,14 +67,17 @@ class Plugin extends PluginBase
                 $model->implement[] = 'Alxy.Favorites.Behaviors.Favoriteability';
             }
         });
-
-        // Extend Post model with behavior
-        Post::extend(function($model) {
-            // Implement behavior if not already implemented
-            if (!$model->isClassExtendedWith('Alxy.Favorites.Behaviors.Favoriteable')) {
-                $model->implement[] = 'Alxy.Favorites.Behaviors.Favoriteable';
-            }
-        });
+        
+        // Check for RainLab Blog plugin
+        if(PluginManager::instance()->exists('RainLab.Blog')) {
+            // Extend Post model with behavior
+            Post::extend(function($model) {
+                // Implement behavior if not already implemented
+                if (!$model->isClassExtendedWith('Alxy.Favorites.Behaviors.Favoriteable')) {
+                    $model->implement[] = 'Alxy.Favorites.Behaviors.Favoriteable';
+                }
+            });
+        }       
     }
 
 }
