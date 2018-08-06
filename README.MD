@@ -106,6 +106,15 @@ $post = Post::find(1);
 $post->favoritedBy(); // returns a collection with the Users that marked the post as favorite.
 ```
 
+### Check if the user has favorited this Object
+
+To return boolean value if the user has favorited the post object, you just need to call the `isFavorited()` method in the object.
+
+``` php
+$post = Post::find(1);
+$post->isFavorited(); // returns a boolean value if auth user has favorited the post.
+```
+
 ## Security
 
 Please report any issue you find in the issues page.  
