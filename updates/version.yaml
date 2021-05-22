@@ -1,3 +1,5 @@
 1.0.1:
     - First version of Favorites
     - create_favorites_table.php
+1.0.2:
+    - Added FavoritePost component to inject funtionality into pages

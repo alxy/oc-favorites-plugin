@@ -29,12 +29,13 @@ $ php artisan plugin:install Alxy.Favorites
 
 Your models should import the `Alxy.Favorites.Behaviors.Favoriteable` behavior. That will have the methods that you'll use to allow the model be favoriteable.
 In all the examples I will use the Post model as the model that is 'Favoriteable', thats for example propuses only.
+Note: The Post model is extended to implement the behavior in Plugin.php
 (see an example below):
 
 ```php
 use Model;
 
-class Post extends Model
+class MyModel extends Model
 {
     public $implement = ['Alxy.Favorites.Behaviors.Favoriteable'];
 }
@@ -43,6 +44,35 @@ class Post extends Model
 That's it ... your model is now **"Favoriteable"**!
 
 ## Usage
+
+Add the FavoMatic plugin to your page/layout file to add features to your frontend.
+
+The Favoriteable methods below are now available in your page and can be called via AJAX using the appropriate calls:
+
+```html
+data-request="onAddFavorite" data-request-data="id: {{post.id}}"
+```
+
+```html
+data-request="onRemoveFavorite" data-request-data="id: {{post.id}}"
+```
+
+```html
+data-request="onToggleFavorite" data-request-data="id: {{post.id}}"
+```
+
+### Using the FavoritePost Component with HTML
+
+If you wish to use the default markup, you can include the component twig element in your Blog's Post loop. For example:
+
+```
+{% for post in posts %}
+    <h1>{{ post.title }}</h1>
+    {% component 'favoMatic' %}
+{% endfor %}
+```
+
+This will render the 'onAddFavorite' and 'onToggleFavorite' methods for each post automatically. If you wish to override this default markup, create a 'favomatic' folder in your theme/partials directory and include the AJAX methods described in the previous section.
 
 The models can be favored with and without an authenticated user
 (see examples below):
@@ -53,9 +83,9 @@ If no param is passed to the favorite method, then the model will assume the aut
 
 ``` php
 $post = Post::find(1);
-$post->addFavorite(); // auth user is added to favorites of this post
-$post->removeFavorite(); // auth user is removed from favorites of this post
-$post->toggleFavorite(); // toggles the favorite status of this post
+$post->addFavorite(); // auth user added to favorites this post
+$post->removeFavorite(); // auth user removed from favorites this post
+$post->toggleFavorite(); // auth user toggles the favorite status from this post
 ```
 
 You can also pass a user model directly to these methods. In this case, the given user will be used.
@@ -63,9 +93,9 @@ You can also pass a user model directly to these methods. In this case, the give
 ``` php
 $post = Post::find(1);
 $user = RainLab\Models\User::first();
-$post->addFavorite($user);
-$post->removeFavorite($user);
-$post->toggleFavorite($user);
+$post->addFavorite($user); // user with that id added to favorites this post
+$post->removeFavorite($user); // user with that id removed from favorites this post
+$post->toggleFavorite($user); // user with that id toggles the favorite status from this post
 ```
 
 The user model can also add to favorites and remove from favorites:
@@ -73,9 +103,9 @@ The user model can also add to favorites and remove from favorites:
 ``` php
 $user = User::first();
 $post = Post::first();
-$user->addFavorite($post);
-$user->removeFavorite($post);
-$user->toggleFavorite($post);
+$user->addFavorite($post); // The user added to favorites this post
+$user->removeFavorite($post); // The user removed from favorites this post
+$user->toggleFavorite($post); // The user toggles the favorite status from this post
 ```
 
 ### Return the favorite objects for the user:
@@ -90,7 +120,7 @@ $user->favoritesOf(Post::class); // returns a collection of Posts the User has m
 
 ### Return the favorites count from an object:
 
-To return the favorites count from an object, you just need to access the `favorites_count` attribute from the model.
+You can return the favorites count from an object, you just need to access the `favorites_count` attribute from the model
 
 ``` php
 $post = Post::find(1);
@@ -99,7 +129,7 @@ $post->favorites_count; // returns the number of users that have marked as favor
 
 ### Return the users who marked this object as favorite
 
-To return the users who favored this object, you just need to call the `favoritedBy()` method in the object.
+You can return the users who marked this object, you just need to call the `favoritedBy()` method in the object
 
 ``` php
 $post = Post::find(1);

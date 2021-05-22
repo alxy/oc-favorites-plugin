@@ -1,0 +1,8 @@
+<span class="h6">
+    {% if not post.isFavorited() %}
+        <a data-request="onAddFavorite" data-request-data="id: {{post.id}}" data-request-redirect="{{this.page.name|page}}"><i class="fa fa-star-o"></i> Add Favorite</a>
+    {% elseif post.isFavorited() %}
+        <a data-request="onToggleFavorite" data-request-data="id: {{post.id}}" data-request-redirect="{{this.page.name|page}}"><i class="fa fa-star"></i> Toggle Favorite</a>
+    {% endif %}
+</span>
+
