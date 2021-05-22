@@ -22,7 +22,7 @@ class Favoriteable extends ExtensionBase
     {
         $this->model = $model;
 
-        $this->model->morphMany['favorites'] = ['Alxy\Favorites\Models\Favorite', 'name' => 'favoriteable'];
+        $this->model->morphMany['favorites'] = ['Alxy\Favorites\Models\Favorite', 'name' => 'favoriteable', 'delete' => true];
     }
 
     /**
